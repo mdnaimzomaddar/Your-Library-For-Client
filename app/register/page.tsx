@@ -15,6 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useTitle } from "@/lib/use-title";
 
 function checkPassword(password: string): string {
   if (password.length < 6) {
@@ -30,6 +31,7 @@ function checkPassword(password: string): string {
 }
 
 export default function RegisterPage() {
+  useTitle("Login");
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [passwordError, setPasswordError] = useState("");
@@ -52,7 +54,6 @@ export default function RegisterPage() {
       email,
       password,
       image: photoURL,
-      photoURL,
     });
     setLoading(false);
 

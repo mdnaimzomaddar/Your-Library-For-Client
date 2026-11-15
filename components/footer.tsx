@@ -75,7 +75,7 @@ export function Footer() {
       </div>
 
       <div className="border-t py-4 text-center text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Your Library. All rights reserved.
+        {`© 2026 Your Library. All rights reserved.`}
       </div>
     </footer>
   );

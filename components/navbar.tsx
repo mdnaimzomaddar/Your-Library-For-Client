@@ -73,7 +73,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
 
-          {isPending ? null :user ? (
+          {isPending ? null : user ? (
             <DropdownMenu>
               <DropdownMenuTrigger className="rounded-full outline-none">
                 <Avatar>
@@ -81,13 +81,17 @@ export function Navbar() {
                   <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
+              <DropdownMenuContent align="end" className="w-48">
+                <div className="px-2 py-1.5 text-sm font-semibold">
+                  {user.name}
+                </div>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem render={<Link href="/profile" />}>
+                <DropdownMenuItem onClick={() => router.push("/profile")}>
                   My Profile
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogout}>
+                  Logout
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (

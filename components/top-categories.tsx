@@ -1,19 +1,32 @@
 import Link from "next/link";
-import { Atom, BookOpen, Landmark, Baby, Shapes } from "lucide-react";
+import {
+  Atom,
+  BookOpen,
+  Landmark,
+  Baby,
+  Shapes,
+  Cpu,
+  UserRound,
+  Heart,
+} from "lucide-react";
 
 const categories = [
   { name: "Fiction", icon: BookOpen },
   { name: "Science", icon: Atom },
   { name: "History", icon: Landmark },
   { name: "Kids", icon: Baby },
+  { name: "Technology", icon: Cpu },
+  { name: "Biography", icon: UserRound },
+  { name: "Romance", icon: Heart },
   { name: "Others", icon: Shapes },
 ];
+
 
 export function TopCategories() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-12">
       <h2 className="mb-8 text-center text-3xl font-bold">Top Categories</h2>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         {categories.map((cat) => (
           <Link
             key={cat.name}

@@ -21,4 +21,6 @@ export type Borrow = {
   userEmail: string;
   borrowDate: string;
   returnDate: string;
+  returned?: boolean;
+  returnedAt?: string;
 };

@@ -1,6 +1,18 @@
-import { authClient } from "@/lib/auth-client";
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL;
+
+async function getToken(): Promise<string | null> {
+  try {
+    const res = await fetch(`${APP_URL}/api/auth/token`, {
+      credentials: "include",
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.token ?? null;
+  } catch {
+    return null;
+  }
+}
 
 export async function apiFetch(path: string, options: RequestInit = {}) {
   const headers: Record<string, string> = {
@@ -8,10 +20,9 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
     ...(options.headers as Record<string, string>),
   };
 
-  // লগইন করা থাকলে টোকেন নিয়ে হেডারে বসাও
-  const { data } = await authClient.token();
-  if (data?.token) {
-    headers["Authorization"] = `Bearer ${data.token}`;
+  const token = await getToken();
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
   }
 
   const res = await fetch(`${API_URL}${path}`, { ...options, headers });

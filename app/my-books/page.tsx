@@ -36,7 +36,18 @@ import {
 } from "@/components/ui/dialog";
 import type { Book } from "@/lib/types";
 
-const categories = ["Fiction", "Science", "History", "Kids", "Others"];
+const categories = [  "Fiction",
+  "Science",
+  "History",
+  "Kids",
+  "Technology",
+  "Biography",
+  "Religion",
+  "Romance",
+  "Mystery",
+  "Self Help",
+  "Poetry",
+  "Others",];
 
 export default function MyBooksPage() {
   useTitle("My Books");

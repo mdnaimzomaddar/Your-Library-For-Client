@@ -30,7 +30,7 @@ export function NewArrivals() {
           এখনো কোনো বই যোগ করা হয়নি।
         </p>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-4xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {books.map((book) => (
             <BookCard key={book._id} book={book} />
           ))}

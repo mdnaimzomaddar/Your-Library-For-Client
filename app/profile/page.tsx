@@ -3,8 +3,9 @@
 import { authClient } from "@/lib/auth-client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
+import { useTitle } from "@/lib/use-title";
 export default function ProfilePage() {
+  useTitle("My Profile");
   const { data: session, isPending } = authClient.useSession();
 
   if (isPending) {

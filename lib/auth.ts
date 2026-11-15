@@ -10,14 +10,6 @@ export const auth = betterAuth({
     enabled: true,
     minPasswordLength: 6,
   },
-  user: {
-    additionalFields: {
-      photoURL: {
-        type: "string",
-        required: false,
-      },
-    },
-  },
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
