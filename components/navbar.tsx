@@ -62,31 +62,27 @@ export function Navbar() {
 
           {user ? (
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="rounded-full">
-                  <Avatar>
-                    <AvatarImage src={user.image} alt={user.name} />
-                    <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                </button>
+              <DropdownMenuTrigger className="rounded-full outline-none">
+                <Avatar>
+                  <AvatarImage src={user.image} alt={user.name} />
+                  <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link href="/profile">My Profile</Link>
+                <DropdownMenuItem render={<Link href="/profile" />}>
+                  My Profile
                 </DropdownMenuItem>
                 <DropdownMenuItem>Logout</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <div className="hidden items-center gap-2 md:flex">
-              <Button variant="ghost" asChild>
-                <Link href="/login">Login</Link>
+              <Button variant="ghost" render={<Link href="/login" />}>
+                Login
               </Button>
-              <Button asChild>
-                <Link href="/register">Register</Link>
-              </Button>
+              <Button render={<Link href="/register" />}>Register</Button>
             </div>
           )}
 
@@ -117,12 +113,8 @@ export function Navbar() {
           ))}
           {!user && (
             <div className="flex gap-2 pt-2">
-              <Button variant="outline" asChild className="flex-1">
-                <Link href="/login">Login</Link>
-              </Button>
-              <Button asChild className="flex-1">
-                <Link href="/register">Register</Link>
-              </Button>
+              <Button render={<Link href="/login" />}>Login</Button>
+              <Button render={<Link href="/register" />}>Register</Button>
             </div>
           )}
         </div>
