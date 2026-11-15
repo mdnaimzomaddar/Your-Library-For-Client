@@ -14,10 +14,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { authClient } from "@/lib/auth-client";
 
 // সাময়িক: ধাপ ৩-এ আসল ইউজার বসবে। লগইন দেখতে চাইলে null এর জায়গায় বসাও:
 // { name: "Test User", image: "" }
-const user: { name: string; image: string } | null = null;
+// const user: { name: string; image: string } | null = null;
 
 const publicLinks = [
   { href: "/", label: "Home" },
@@ -31,8 +34,18 @@ const privateLinks = [
 ];
 
 export function Navbar() {
+  const router = useRouter();
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user ?? null;
   const [open, setOpen] = useState(false);
   const links = user ? [...publicLinks, ...privateLinks] : publicLinks;
+
+  async function handleLogout() {
+    await authClient.signOut();
+    toast.success("লগআউট সফল হয়েছে");
+    router.push("/");
+    router.refresh();
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur">
@@ -60,11 +73,11 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
 
-          {user ? (
+          {isPending ? null :user ? (
             <DropdownMenu>
               <DropdownMenuTrigger className="rounded-full outline-none">
                 <Avatar>
-                  <AvatarImage src={user.image} alt={user.name} />
+                  <AvatarImage src={user.image ?? undefined} alt={user.name} />
                   <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
@@ -74,7 +87,7 @@ export function Navbar() {
                 <DropdownMenuItem render={<Link href="/profile" />}>
                   My Profile
                 </DropdownMenuItem>
-                <DropdownMenuItem>Logout</DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
