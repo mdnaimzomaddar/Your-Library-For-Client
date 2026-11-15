@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Your Library
 
-## Getting Started
+A small online library where you can **add a book, borrow a book and return a book**.
+Browse all books, share your own, and keep track of what you have borrowed and read.
 
-First, run the development server:
+## Live Site
+
+🔗 **https://তোমার-সাইট.netlify.app**
+
+Server API: https://তোমার-server.onrender.com
+
+## Features
+
+- **Home page** with a Swiper.js slider, the 6 newest books, and extra sections (How Borrowing Works, Top Categories)
+- **Authentication** with email and password or Google login, built with BetterAuth and MongoDB
+- **Password validation**: at least 6 characters, one uppercase and one lowercase letter
+- **Private routes**: Add Book, My Books, My Borrows and Book Details need login, and a reload keeps you logged in
+- **Add books** with cover image upload (imgbb), category, description and total copies
+- **Edit and delete** your own books, with a confirmation modal before deleting
+- **Borrow system** with live available-copy tracking (`$inc`) and a "Not Available" state when copies run out
+- **No double borrow**: the same book cannot be borrowed twice at the same time
+- **Books I've Read**: returned books are saved to your reading history
+- **JWT-protected API** for all private actions
+- **Dark and light theme**, smooth animations, and a fully responsive design
+- Toast messages for every success and error, loading spinners, custom 404 page, and a unique page title on every route
+
+## Tech Stack
+
+| Area | Technology |
+|---|---|
+| Frontend | Next.js (App Router), TypeScript, shadcn/ui, Tailwind CSS |
+| Authentication | BetterAuth, MongoDB Adapter, JWT |
+| Backend | Express.js, TypeScript, MongoDB |
+| Extras | Swiper.js, Framer Motion, Sonner, imgbb |
+| Hosting | Netlify (client), Render (server) |
+
+## Run Locally
 
 ```bash
+git clone https://github.com/mdnaimzomaddar/তোমার-client-repo-নাম.git
+cd তোমার-client-repo-নাম
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create a `.env.local` file:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```env
+MONGODB_URI=your_mongodb_connection_string
+BETTER_AUTH_SECRET=your_long_random_secret
+BETTER_AUTH_URL=http://localhost:3000
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_API_URL=http://localhost:5000
+NEXT_PUBLIC_IMGBB_KEY=your_imgbb_api_key
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Server Repository
 
-## Learn More
+https://github.com/mdnaimzomaddar/Your-Library-For-Server
 
-To learn more about Next.js, take a look at the following resources:
+## Project Live Link
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+https://yourlibrarys.netlify.app/
