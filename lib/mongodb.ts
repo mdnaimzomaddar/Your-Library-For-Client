@@ -10,7 +10,13 @@ const globalForMongo = globalThis as unknown as {
   mongoClient?: MongoClient;
 };
 
-export const client = globalForMongo.mongoClient ?? new MongoClient(uri);
+export const client =
+  globalForMongo.mongoClient ??
+  new MongoClient(uri, {
+    serverSelectionTimeoutMS: 10000,
+    connectTimeoutMS: 10000,
+    maxPoolSize: 5,
+  });
 
 if (process.env.NODE_ENV !== "production") {
   globalForMongo.mongoClient = client;

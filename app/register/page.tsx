@@ -49,21 +49,26 @@ export default function RegisterPage() {
     if (error) return;
 
     setLoading(true);
-    const { error: signUpError } = await authClient.signUp.email({
-      name,
-      email,
-      password,
-      image: photoURL,
-    });
-    setLoading(false);
-
-    if (signUpError) {
-      toast.error(signUpError.message || "রেজিস্ট্রেশন ব্যর্থ হয়েছে");
-      return;
+    try {
+      const { error: signUpError } = await authClient.signUp.email({
+        name,
+        email,
+        password,
+        image: photoURL,
+      });
+    
+      if (signUpError) {
+        toast.error(signUpError.message || "রেজিস্ট্রেশন ব্যর্থ হয়েছে");
+        return;
+      }
+    
+      toast.success("রেজিস্ট্রেশন সফল! এখন লগইন করো।");
+      router.push("/login");
+    } catch {
+      toast.error("সংযোগে সমস্যা হয়েছে, একটু পরে আবার চেষ্টা করো");
+    } finally {
+      setLoading(false);
     }
-
-    toast.success("রেজিস্ট্রেশন সফল! এখন লগইন করো।");
-    router.push("/login");
   }
 
   async function handleGoogle() {
