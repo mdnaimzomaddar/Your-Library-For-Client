@@ -5,9 +5,9 @@ Browse all books, share your own, and keep track of what you have borrowed and r
 
 ## Live Site
 
-🔗 **https://তোমার-সাইট.netlify.app**
+🔗 **https://your-library-for-client-theta.vercel.app/*
 
-Server API: https://তোমার-server.onrender.com
+Server API: 
 
 ## Features
 
@@ -34,27 +34,6 @@ Server API: https://তোমার-server.onrender.com
 | Extras | Swiper.js, Framer Motion, Sonner, imgbb |
 | Hosting | Netlify (client), Render (server) |
 
-## Run Locally
-
-```bash
-git clone https://github.com/mdnaimzomaddar/তোমার-client-repo-নাম.git
-cd তোমার-client-repo-নাম
-npm install
-npm run dev
-```
-
-Create a `.env.local` file:
-
-```env
-MONGODB_URI=your_mongodb_connection_string
-BETTER_AUTH_SECRET=your_long_random_secret
-BETTER_AUTH_URL=http://localhost:3000
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-NEXT_PUBLIC_API_URL=http://localhost:5000
-NEXT_PUBLIC_IMGBB_KEY=your_imgbb_api_key
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-```
 
 ## Server Repository
 
@@ -62,4 +41,4 @@ https://github.com/mdnaimzomaddar/Your-Library-For-Server
 
 ## Project Live Link
 
-https://yourlibrarys.netlify.app/
+https://your-library-for-client-theta.vercel.app/
